@@ -1,4 +1,3 @@
-import com.sun.security.ntlm.Server;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
@@ -7,11 +6,11 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class ServerStart {
+public class AppiumServer {
     private AppiumDriverLocalService service;
     private AppiumServiceBuilder builder;
     private DesiredCapabilities cap;
-
+    boolean isServerRunning = false;
     public void startServer() {
         //Set Capabilities
         cap = new DesiredCapabilities();
@@ -35,7 +34,7 @@ public class ServerStart {
     }
 
     public boolean checkIfServerIsRunning(int port) {
-        boolean isServerRunning = false;
+
         ServerSocket serverSocket;
         try {
             serverSocket = new ServerSocket(port);
@@ -49,16 +48,16 @@ public class ServerStart {
         return isServerRunning;
     }
     public static void main(String args[]) {
-        ServerStart serverStart = new ServerStart();
+        AppiumServer appiumServer = new AppiumServer();
         int port = 4723;
-        if (!serverStart.checkIfServerIsRunning(port)) {
-            serverStart.startServer();
-            serverStart.stopSever();
+        if (!appiumServer.checkIfServerIsRunning(port)) {
+            appiumServer.startServer();
+            appiumServer.stopSever();
 
         } else {
 
             System.out.println("Server is in use on port-" + port);
-            serverStart.stopSever();
+            appiumServer.stopSever();
         }
     }
 }
