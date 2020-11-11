@@ -1,23 +1,32 @@
+import PhonesCapabilites.CatS60Capabilites;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 
-public class ScrollTest{
+public class ScrollTest implements CatS60Capabilites {
     AppiumDriver<MobileElement> driver;
+    SettingCapabilites phoneCapabilites;
 
-    public ScrollTest() throws MalformedURLException {
-        PhoneCapabilites phoneCapabilites = new PhoneCapabilites("Nexus 5", "09a84576029a0193", "Android", "6.0.1", "com.android.vending", "com.google.android.finsky.activities.MainActivity", true, 20000);
+    @BeforeMethod
+    public void setPhoneCapabilites()  throws MalformedURLException  {
+        phoneCapabilites= new SettingCapabilites(deviceName,udid,platformName,platformVersion,appPackage,appActivity,noReset,appWaitDuration);
         phoneCapabilites.setCapabilites();
         driver = phoneCapabilites.driver;
+
     }
 
     @Test
-    public void testBaseClass() {
-        System.out.println(driver);
+    public void ScrollTest() {
+        MobileElement element = driver.findElement(MobileBy.AndroidUIAutomator(
+                "new UiScrollable(new UiSelector().resourceId(\"com.android.vending:id/tab_recycler_view\")).getChildByText("
+                        + "new UiSelector().className(\"android.widget.TextView\"), \"Games We Are Playing\")"));
+
+
+            driver.findElement(MobileBy.AndroidUIAutomator())
 
     }
 }

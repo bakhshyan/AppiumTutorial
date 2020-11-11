@@ -6,7 +6,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PhoneCapabilites {
+public class SettingCapabilites {
     private String deviceName;
     private String udid;
     private String platformName;
@@ -19,7 +19,7 @@ public class PhoneCapabilites {
     private DesiredCapabilities caps;
     public AppiumDriver<MobileElement> driver;
 
-    public PhoneCapabilites(String deviceName, String udid, String platformName, String platformVersion, String appPackage, String appActivity, boolean noReset, int appWaitDuration) {
+    public SettingCapabilites(String deviceName, String udid, String platformName, String platformVersion, String appPackage, String appActivity, boolean noReset, int appWaitDuration) {
         this.deviceName = deviceName;
         this.udid = udid;
         this.platformName = platformName;
